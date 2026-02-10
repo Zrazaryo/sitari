@@ -1,37 +1,37 @@
 {
   "version": 2,
-  "public": false,
   "buildCommand": "echo 'Build complete'",
   "outputDirectory": ".",
-  "routes": [
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
     {
-      "src": "/api/(.*)",
-      "dest": "api/$1",
-      "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+      "source": "/api/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "s-maxage=0"
+        }
+      ]
     },
     {
-      "src": "/assets/(.*)",
-      "dest": "assets/$1"
+      "source": "/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "/api/:path*"
     },
     {
-      "src": "/uploads/(.*)",
-      "dest": "uploads/$1"
-    },
-    {
-      "src": "/documents/(.*)",
-      "dest": "documents/$1"
-    },
-    {
-      "src": "/logs/(.*)",
-      "dest": "logs/$1"
-    },
-    {
-      "src": "/(.*\\.html?)$",
-      "dest": "/$1"
-    },
-    {
-      "src": "/",
-      "dest": "/index.html"
+      "source": "/:path*\\.html",
+      "destination": "/:path*\\.html"
     }
   ]
 }
