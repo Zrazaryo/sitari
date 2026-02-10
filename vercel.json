@@ -1,20 +1,13 @@
 {
   "version": 2,
   "public": false,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "."
-      }
-    }
-  ],
+  "buildCommand": "echo 'Build complete'",
+  "outputDirectory": ".",
   "routes": [
     {
       "src": "/api/(.*)",
       "dest": "api/$1",
-      "methods": ["GET", "POST", "PUT", "DELETE"]
+      "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
     },
     {
       "src": "/assets/(.*)",
@@ -29,18 +22,16 @@
       "dest": "documents/$1"
     },
     {
-      "src": "/(.*\\.html)",
+      "src": "/logs/(.*)",
+      "dest": "logs/$1"
+    },
+    {
+      "src": "/(.*\\.html?)$",
       "dest": "/$1"
     },
     {
       "src": "/",
       "dest": "/index.html"
     }
-  ],
-  "env": {
-    "DATABASE_HOST": "@database_host",
-    "DATABASE_USER": "@database_user",
-    "DATABASE_PASS": "@database_pass",
-    "DATABASE_NAME": "@database_name"
-  }
+  ]
 }
