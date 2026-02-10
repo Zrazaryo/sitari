@@ -1,0 +1,59 @@
+# Dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+tmp/
+temp/
+
+# Log files
+logs/
+*.log
+
+# Build output
+dist/
+build/
+out/
+
+# Testing
+coverage/
+.nyc_output/
+
+# Vercel
+.vercel
+.vercel/
+
+# Database backups
+*.sql.bak
+*.sql.backup
+
+# Cache
+.cache/
+cache/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test files (keep .php test files for reference only)
+test_*.html
+test_*.js

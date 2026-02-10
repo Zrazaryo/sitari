@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistem Arsip Dokumen - Kantor Imigrasi">
+    <meta name="theme-color" content="#8B5CF6">
+    <title>Sistem Arsip Dokumen - Kantor Imigrasi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        .container-main {
+            width: 100%;
+            padding: 20px;
+        }
+
+        .card-main {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            padding: 3rem 2rem;
+            max-width: 500px;
+            margin: 0 auto;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .logo-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            font-size: 3rem;
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .system-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1F2937;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .system-subtitle {
+            font-size: 1rem;
+            color: #6B7280;
+            margin-bottom: 2.5rem;
+            font-weight: 500;
+        }
+
+        .login-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .login-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.2rem 1.5rem;
+            border-radius: 12px;
+            border: none;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            min-height: 50px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            color: white;
+        }
+
+        .login-btn i {
+            margin-right: 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .btn-admin {
+            background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+        }
+
+        .btn-admin:hover {
+            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+        }
+
+        .btn-staff {
+            background: linear-gradient(135deg, #059669 0%, #10B981 100%);
+        }
+
+        .btn-staff:hover {
+            background: linear-gradient(135deg, #047857 0%, #059669 100%);
+        }
+
+        .btn-superadmin {
+            background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%);
+        }
+
+        .btn-superadmin:hover {
+            background: linear-gradient(135deg, #991B1B 0%, #DC2626 100%);
+        }
+
+        .info-section {
+            background: #F3F4F6;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border-left: 4px solid #667eea;
+        }
+
+        .info-section h5 {
+            color: #1F2937;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .info-section p {
+            color: #6B7280;
+            font-size: 0.9rem;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .footer-text {
+            text-align: center;
+            color: #9CA3AF;
+            font-size: 0.85rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #E5E7EB;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: #DBEAFE;
+            color: #1E40AF;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .card-main {
+                padding: 2rem 1.5rem;
+            }
+
+            .system-title {
+                font-size: 1.5rem;
+            }
+
+            .logo-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 2.5rem;
+            }
+
+            .login-btn {
+                padding: 1rem;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-main">
+        <div class="card-main">
+            <!-- Logo -->
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h1 class="system-title">Sistem Arsip Dokumen</h1>
+                <p class="system-subtitle">Kantor Imigrasi</p>
+                <span class="status-badge">
+                    <i class="fas fa-check-circle"></i> Siap Digunakan
+                </span>
+            </div>
+
+            <!-- Login Options -->
+            <div class="login-section">
+                <button class="login-btn btn-superadmin" onclick="loginAs('superadmin')">
+                    <i class="fas fa-user-shield"></i> Login Super Admin
+                </button>
+                <button class="login-btn btn-admin" onclick="loginAs('admin')">
+                    <i class="fas fa-user-tie"></i> Login Admin
+                </button>
+                <button class="login-btn btn-staff" onclick="loginAs('staff')">
+                    <i class="fas fa-user"></i> Login Staff
+                </button>
+            </div>
+
+            <!-- Info Section -->
+            <div class="info-section">
+                <h5><i class="fas fa-info-circle"></i> Informasi Penting</h5>
+                <p>Aplikasi ini digunakan untuk mengelola arsip dokumen dengan sistem keamanan tingkat tinggi. Pilih peran Anda untuk melanjutkan.</p>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer-text">
+                <p>© 2026 Sistem Arsip Dokumen | Vercel Version</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        function loginAs(role) {
+            // Simpan role ke localStorage
+            localStorage.setItem('selectedRole', role);
+            
+            // Redirect ke halaman login dengan role
+            const redirectUrl = {
+                'superadmin': 'login.html?role=superadmin',
+                'admin': 'login.html?role=admin',
+                'staff': 'login.html?role=staff'
+            };
+            
+            window.location.href = redirectUrl[role];
+        }
+
+        // Check if already logged in
+        window.addEventListener('load', function() {
+            const selectedRole = localStorage.getItem('selectedRole');
+            if (selectedRole) {
+                // Optional: Redirect ke dashboard jika sudah login
+                console.log('User role: ' + selectedRole);
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

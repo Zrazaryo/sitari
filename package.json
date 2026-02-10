@@ -1,0 +1,34 @@
+{
+  "name": "sistem-arsip-dokumen",
+  "version": "1.0.0",
+  "description": "Sistem Arsip Dokumen - Kantor Imigrasi, optimized for Vercel deployment",
+  "main": "index.html",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "echo 'Build complete'",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "arsip",
+    "dokumen",
+    "kantor-imigrasi",
+    "system",
+    "management"
+  ],
+  "author": "Developer",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "mysql2": "^3.2.0",
+    "express-session": "^1.17.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Login - Sistem Arsip Dokumen">
+    <title>Login - Sistem Arsip Dokumen</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        .login-container {
+            width: 100%;
+            padding: 20px;
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            padding: 2.5rem 2rem;
+            max-width: 450px;
+            margin: 0 auto;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            font-size: 2.5rem;
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .login-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1F2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-subtitle {
+            font-size: 0.9rem;
+            color: #6B7280;
+            margin-bottom: 1.5rem;
+        }
+
+        .role-badge {
+            display: inline-block;
+            background: #DBEAFE;
+            color: #1E40AF;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #1F2937;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .form-control {
+            border: 2px solid #E5E7EB;
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            outline: none;
+        }
+
+        .form-control::placeholder {
+            color: #9CA3AF;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 0.9rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin-top: 1rem;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+            color: white;
+            text-decoration: none;
+        }
+
+        .btn-back {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #E5E7EB;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: white;
+            color: #6B7280;
+            margin-top: 1rem;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-back:hover {
+            border-color: #D1D5DB;
+            background: #F9FAFB;
+            color: #1F2937;
+            text-decoration: none;
+        }
+
+        .info-box {
+            background: #F0F9FF;
+            border-left: 4px solid #0EA5E9;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: #0369A1;
+        }
+
+        .info-box i {
+            margin-right: 0.5rem;
+        }
+
+        .error-message {
+            background: #FEE2E2;
+            color: #991B1B;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #DC2626;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            .login-card {
+                padding: 1.5rem;
+            }
+
+            .login-title {
+                font-size: 1.3rem;
+            }
+
+            .login-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <!-- Header -->
+            <div class="login-header">
+                <div class="login-icon">
+                    <i class="fas fa-sign-in-alt"></i>
+                </div>
+                <div id="roleDisplay">
+                    <span class="role-badge">Loading...</span>
+                </div>
+                <h1 class="login-title">Masuk ke Sistem</h1>
+                <p class="login-subtitle">Silakan masukkan username dan password Anda</p>
+            </div>
+
+            <!-- Error Message -->
+            <div class="error-message" id="errorMessage">
+                <i class="fas fa-exclamation-circle"></i> <span id="errorText"></span>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label class="form-label" for="username">
+                        <i class="fas fa-user"></i> Username
+                    </label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="username" 
+                        placeholder="Masukkan username Anda" 
+                        required 
+                        autocomplete="username"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="password">
+                        <i class="fas fa-lock"></i> Password
+                    </label>
+                    <input 
+                        type="password" 
+                        class="form-control" 
+                        id="password" 
+                        placeholder="Masukkan password Anda" 
+                        required 
+                        autocomplete="current-password"
+                    >
+                </div>
+
+                <div class="form-group form-check">
+                    <input 
+                        type="checkbox" 
+                        class="form-check-input" 
+                        id="rememberMe"
+                    >
+                    <label class="form-check-label" for="rememberMe">
+                        Ingat saya di perangkat ini
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-login">
+                    <i class="fas fa-arrow-right"></i> Login
+                </button>
+            </form>
+
+            <!-- Info Box -->
+            <div class="info-box">
+                <i class="fas fa-info-circle"></i>
+                <strong>Demo Credentials:</strong> Gunakan username dan password yang telah diberikan oleh admin sistem.
+            </div>
+
+            <!-- Back Button -->
+            <a href="index.html" class="btn-back">
+                <i class="fas fa-arrow-left"></i> Kembali
+            </a>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Get role from URL parameter
+        function getRoleFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('role') || 'admin';
+        }
+
+        // Display role on page load
+        window.addEventListener('load', function() {
+            const role = getRoleFromUrl();
+            const roleDisplay = document.getElementById('roleDisplay');
+            const roleMap = {
+                'superadmin': 'Super Admin',
+                'admin': 'Admin',
+                'staff': 'Staff'
+            };
+            roleDisplay.innerHTML = `<span class="role-badge">${roleMap[role] || 'User'}</span>`;
+            
+            // Store role for form submission
+            sessionStorage.setItem('loginRole', role);
+        });
+
+        function handleLogin(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const rememberMe = document.getElementById('rememberMe').checked;
+            const role = sessionStorage.getItem('loginRole');
+
+            // For demo purposes, show a message
+            const errorMsg = document.getElementById('errorMessage');
+            const errorText = document.getElementById('errorText');
+
+            // Validate inputs
+            if (!username || !password) {
+                errorText.textContent = 'Username dan password tidak boleh kosong';
+                errorMsg.classList.add('show');
+                return;
+            }
+
+            // Simulate login (in production, call your backend API)
+            console.log('Login attempt:', { username, role, rememberMe });
+
+            // Show loading state
+            const submitBtn = event.target.querySelector('[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sedang memproses...';
+            submitBtn.disabled = true;
+
+            // Simulate API call
+            setTimeout(() => {
+                // For demo, we'll just show success message
+                errorText.textContent = 'Login berhasil! Silakan hubungi administrator untuk setup backend API.';
+                errorMsg.classList.remove('show');
+                
+                // Store login info
+                localStorage.setItem('userRole', role);
+                localStorage.setItem('username', username);
+                
+                // Redirect based on role
+                const redirectMap = {
+                    'superadmin': 'superadmin/dashboard.html',
+                    'admin': 'dashboard.html',
+                    'staff': 'staff/dashboard.html'
+                };
+
+                // For now, show message
+                setTimeout(() => {
+                    alert('Fitur login memerlukan backend API. Silakan hubungi administrator untuk konfigurasi server.');
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, 1500);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
